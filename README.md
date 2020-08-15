@@ -1,2 +1,3 @@
-# edisoft_candidate_qa
- qa test for edisoft
+# candidate_qa
+  
+  Тестовое задание для Edisoft (Junior QA), Корнеев Евгений

@@ -25,4 +25,5 @@ end
 When(/^я должен увидеть текст на странице "([^"]*)"$/) do |text_page|
   sleep 1
   expect(page).to have_text text_page
+  $logger.info("Искомый текст обнаружен на странице")
 end

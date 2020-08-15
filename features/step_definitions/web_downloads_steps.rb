@@ -1,5 +1,6 @@
 When(/^я скачиваю последний стабильный релиз$/) do
    (find(:css, 'li:nth-child(1) li:nth-child(2) > a')).click
+   $logger.info('Скачивание последнего стабильного релиза Ruby начато')
    sleep 5
 end
 
