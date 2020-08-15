@@ -8,6 +8,8 @@ require 'capybara/cucumber'
 require 'webdrivers'
 require_relative 'helpers/class_extentions'
 
+
+
 def browser_setup(browser = 'firefox')
   case browser
   when 'chrome'
@@ -21,7 +23,7 @@ def browser_setup(browser = 'firefox')
                                             'chromeOptions' => {
                                               'args' => ['--window-size=1920,1080'],
                                               'prefs' => {
-                                                'download.default_directory' => Dir.pwd + '/features/tmp/',
+                                                'download.default_directory' => '/features/',
                                                 'download.prompt_for_download' => false,
                                                 'plugins.plugins_disabled' => ['Chrome PDF Viewer']
                                               }
@@ -50,3 +52,4 @@ configuration = YAML.load_file 'configuration/default.yml'
 $rest_wrap = RestWrapper.new url: 'https://testing4qa.ediweb.ru/api',
                              **configuration[:credentials]
 logger_initialize
+

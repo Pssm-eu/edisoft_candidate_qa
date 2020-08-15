@@ -26,9 +26,3 @@ When(/^я должен увидеть текст на странице "([^"]*)"
   sleep 1
   expect(page).to have_text text_page
 end
-
-
-When(/^ищу последнюю версию$/) do
-  (find(:css, 'li:nth-child(1) li:nth-child(2) > a')).click
-  sleep 5
-end
