@@ -8,6 +8,6 @@ gem 'cucumber', '2.4.0'
 gem 'psych'
 gem 'rest-client'
 gem 'rspec', '~> 3.5'
-gem 'webdrivers', '~> 4.0'
+gem 'selenium-webdriver', '2.53.4'
 
 
