@@ -45,6 +45,12 @@ class RestWrapper
     send_error e
   end
 
+  def self.delete(url, headers={}, &block)
+    Request.execute(:method => :delete,
+                    :url => url,
+                    :headers => headers, &block)
+  end
+
   def delete(current_url, params = {})
     response = RestClient::Request.execute method: :delete,
                                            url: compile_full_url(current_url),
