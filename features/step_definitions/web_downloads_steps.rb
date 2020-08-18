@@ -9,7 +9,7 @@ end
 
 When(/^проверяю что файл находится в нужной директории$/) do
   expect(File).to exist('features/tmp/ruby-2.7.1.tar.gz')
-  $logger.info('Файл обнаружен')
+  $logger.info('Файл скачан')
   end
 
 When(/^проверяю что имя скачанного файла совпадает с именем файла\-установщика$/) do
@@ -18,4 +18,9 @@ end
 
 When(/^проверить, какая версия является последним стабильным релизом$/) do
   pending
+end
+
+When(/^удаляю загруженный файл$/) do
+  File.delete('features/tmp/ruby-2.7.1.tar.gz')
+  $logger.info('Файл удален')
 end
