@@ -7,6 +7,7 @@ require_relative 'helpers/logger'
 require 'capybara/cucumber'
 require 'selenium-webdriver'
 require_relative 'helpers/class_extentions'
+require_relative 'helpers/download_helper'
 
 def browser_setup(browser = 'firefox')
   case browser
@@ -48,6 +49,7 @@ def browser_setup(browser = 'firefox')
   end
 end
 browser_setup('firefox')
+
 
 configuration = YAML.load_file 'configuration/default.yml'
 $rest_wrap = RestWrapper.new url: 'https://testing4qa.ediweb.ru/api',
