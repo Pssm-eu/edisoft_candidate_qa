@@ -29,7 +29,7 @@ When(/^добавляю пользователя c логином (\w+\.\w+) и�
                              surname: surname,
                              password: password,
                              active: 1)
-  $logger.info(response.inspect)
+  $logger.info("Пользователь #{login} создан.")
 end
 
 
@@ -48,7 +48,16 @@ end
 
 When(/^удаляю пользователя с логином (\w+\.\w+)$/) do |login|
   id =  find_id(login)
-  response = $rest_wrap.delete('/users/', + id.to_s)
+  response = $rest_wrap.delete('/users/' + id.to_s)
   $logger.info(response.inspect)
   $logger.info("Пользователь #{login} удален.")
+end
+
+When(/^изменяю параметры пользователя с логином (\w+\.\w+) на имя (\w+), фамилию (\w+), пароль ([\d\w@!#]+)$/) do
+|login, name, surname, password|
+  id = find_id(login)
+
+  response = $rest_wrap.put('/users/' + id.to_s, name: name, surname: surname, password: password)
+  $logger.info(response.inspect)
+  $logger.info("Пользователь #{login} изменен.")
 end
