@@ -2,10 +2,7 @@
 
 When(/^получаю информацию о пользователях$/) do
   users_full_information = $rest_wrap.get('/users')
-
-  $logger.info('Информация о пользователях получена')
   @scenario_data.users_full_info = users_full_information
-  $logger.info("#{users_full_information}")
 end
 
 When(/^проверяю (наличие|отсутствие) логина (\w+\.\w+) в списке пользователей$/) do |presence, login|
@@ -48,23 +45,13 @@ When(/^нахожу пользователя с логином (\w+\.\w+)$/) do 
 end
 
 
+
 When(/^удаляю пользователя с логином (\w+\.\w+)$/) do |login|
-  #Находим пользователя с запрошенным логином
-  users_full_information = $rest_wrap.get('/users')
-  @scenario_data.users_full_info = users_full_information
   @scenario_data.users_id[login] = find_user_id(users_information: @scenario_data
-                                                                       .users_full_info,
-                                                user_login: login)
-  $logger.info("Найден пользователь #{login} с id:#{@scenario_data.users_id[login]}")
-
-
-  delete_url = "https://testing4qa.ediweb.ru/api/users/#{@scenario_data.users_id[login]}"
-  url = URI(delete_url)
-  https = Net::HTTP.new(url.host, url.port)
-  https.use_ssl = true
-  request = Net::HTTP::Delete.new(url)
-
-  request["Authorization"] = "Basic Yy50ZXN0ZXI6ZDNATGQwM2t1dj93VjN4OEV6Yjs="
-  response = https.request(request)
-  puts response.read_body
+                                                                          .users_full_info,
+                                                   user_login: login)
+  d_id =  @scenario_data.users_id[login]
+  response = $rest_wrap.delete('/users/', "#{d_id}")
+  $logger.info(response.inspect)
+  $logger.info("Пользователь #{login} удален.")
 end

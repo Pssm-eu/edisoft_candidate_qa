@@ -47,16 +47,16 @@ class RestWrapper
   end
 
 
-  # def delete(current_url, params = {})
-  #   response = RestClient::Request.execute method: :delete,
-  #                                          url: compile_full_url(current_url),
-  #                                          user: login,
-  #                                          password: password,
-  #                                          headers: { content_type: 'application/json' }
-  #   JSON.parse(response)
-  # rescue StandardError => e
-  #   send_error e
-  # end
+  def delete(current_url, d_id)
+    response = RestClient::Request.execute method: :delete,
+                                           url: compile_delete_url(current_url, d_id),
+                                           user: login,
+                                           password: password,
+                                           headers: { content_type: 'application/json' }
+    JSON.parse(response)
+  rescue StandardError => e
+    send_error e
+  end
 
   private
 
@@ -73,6 +73,10 @@ class RestWrapper
 
   def compile_full_url(current_url)
     url + current_url
+  end
+
+  def compile_delete_url(current_url, d_id)
+    url + current_url + d_id
   end
 
 end
