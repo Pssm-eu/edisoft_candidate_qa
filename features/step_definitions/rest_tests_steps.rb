@@ -47,11 +47,8 @@ end
 
 
 When(/^удаляю пользователя с логином (\w+\.\w+)$/) do |login|
-  @scenario_data.users_id[login] = find_user_id(users_information: @scenario_data
-                                                                          .users_full_info,
-                                                   user_login: login)
-  d_id =  @scenario_data.users_id[login]
-  response = $rest_wrap.delete('/users/', "#{d_id}")
+  id =  find_id(login)
+  response = $rest_wrap.delete('/users/', + id.to_s)
   $logger.info(response.inspect)
   $logger.info("Пользователь #{login} удален.")
 end
