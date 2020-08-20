@@ -5,6 +5,7 @@ When(/^получаю информацию о пользователях$/) do
 
   $logger.info('Информация о пользователях получена')
   @scenario_data.users_full_info = users_full_information
+  $logger.info("#{users_full_information}")
 end
 
 When(/^проверяю (наличие|отсутствие) логина (\w+\.\w+) в списке пользователей$/) do |presence, login|
@@ -27,23 +28,13 @@ When(/^добавляю пользователя c логином (\w+\.\w+) и�
 |login, name, surname, password|
 
   response = $rest_wrap.post('/users', login: login,
-                                       name: name,
-                                       surname: surname,
-                                       password: password,
-                                       active: 1)
+                             name: name,
+                             surname: surname,
+                             password: password,
+                             active: 1)
   $logger.info(response.inspect)
 end
 
-When(/^добавляю пользователя с параметрами:$/) do |data_table|
-  user_data = data_table.raw
-
-  login = user_data[0][1]
-  name = user_data[1][1]
-  surname = user_data[2][1]
-  password = user_data[3][1]
-
-  step "добавляю пользователя c логином #{login} именем #{name} фамилией #{surname} паролем #{password}"
-end
 
 When(/^нахожу пользователя с логином (\w+\.\w+)$/) do |login|
   step %(получаю информацию о пользователях)
@@ -54,4 +45,26 @@ When(/^нахожу пользователя с логином (\w+\.\w+)$/) do 
   end
 
   $logger.info("Найден пользователь #{login} с id:#{@scenario_data.users_id[login]}")
+end
+
+
+When(/^удаляю пользователя с логином (\w+\.\w+)$/) do |login|
+  #Находим пользователя с запрошенным логином
+  users_full_information = $rest_wrap.get('/users')
+  @scenario_data.users_full_info = users_full_information
+  @scenario_data.users_id[login] = find_user_id(users_information: @scenario_data
+                                                                       .users_full_info,
+                                                user_login: login)
+  $logger.info("Найден пользователь #{login} с id:#{@scenario_data.users_id[login]}")
+
+
+  delete_url = "https://testing4qa.ediweb.ru/api/users/#{@scenario_data.users_id[login]}"
+  url = URI(delete_url)
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+  request = Net::HTTP::Delete.new(url)
+
+  request["Authorization"] = "Basic Yy50ZXN0ZXI6ZDNATGQwM2t1dj93VjN4OEV6Yjs="
+  response = https.request(request)
+  puts response.read_body
 end
