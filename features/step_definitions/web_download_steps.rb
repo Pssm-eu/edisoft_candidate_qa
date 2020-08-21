@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-When(/^перехожу на вкладку скачать$/) do
-  visit('https://www.ruby-lang.org/ru/downloads/')
-  $logger.info("Открыта страница загрузки")
+When(/^захожу на страницу "(.+?)"$/) do |url|
+  visit url
+  $logger.info("Страница #{url} открыта")
 end
+
+When(/^перехожу на вкладку скачать$/) do
+    find(:xpath, '/html/body/div[1]/div/div[1]/a[2]').click
+    $logger.info("Открыта страница загрузки")
+  end
 
 When(/^проверяю версию Ruby на странице$/) do
   $ver_stable = check_stable
