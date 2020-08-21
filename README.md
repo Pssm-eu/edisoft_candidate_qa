@@ -5,6 +5,7 @@
 	/features/rest_tests_steps.rb [Тест на проверку функционала REST API]
 	/features/step_definitions/web_download_steps.rb [Шаги для теста]
 	/features/step_definitions/rest_tests_steps.rb [Шаги для теста]
-	.idea/runConfigurations/rest_api_test_feature.xml []
+	.idea/runConfigurations/rest_api_test_feature.xml [Конфигурационный файл для запуска теста в RubyMine]
+	.idea/runConfigurations/web_download_test_feature.xml [Конфигурационный файл для запуска теста в RubyMine]
 	/features/support/download_helper.rb [Методы для проверки функционала скачивания]
 	/.xlxs [Чеклист и багрепорт по REST API]
