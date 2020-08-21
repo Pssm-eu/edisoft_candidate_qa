@@ -41,7 +41,6 @@ When(/^нахожу пользователя с логином (\w+\.\w+)$/) do 
                                                                          .users_full_info,
                                                   user_login: login)
   end
-
   $logger.info("Найден пользователь #{login} с id:#{@scenario_data.users_id[login]}")
 end
 

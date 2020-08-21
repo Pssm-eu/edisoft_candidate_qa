@@ -1,19 +1,23 @@
-# Candidate  QA    Edisoft
-#### Тестовое задание (Junior QA), Корнеев Евгений
-	
-	/features/web_download_test.feature [Тест на проверку функционала скачивания]
-	/features/rest_api_test.feature [Тест на проверку функционала REST API]
-	/features/rest_api_negative_tests.feature [Негативные тесты на проверку REST API]
+### Тестовое задание (Junior QA), Корнеев Евгений
+
+Тесты:
+
+	Проверка функционала скачивания: /features/web_download_test.feature 
+	Проверка функционала REST API: /features/rest_api_test.feature
+	Негативные тесты REST API: /features/rest_api_negative_tests.feature
+
+Шаги:
+
+	/features/step_definitions/web_download_steps.rb
+	/features/step_definitions/rest_tests_steps.rb
+	/features/step_definitions/rest_api_negative_tests_steps.rb
 
 
-	/features/step_definitions/web_download_steps.rb [Шаги для теста]
-	/features/step_definitions/rest_tests_steps.rb [Шаги для теста]
-	/features/step_definitions/rest_api_negative_tests_steps.rb [Шаги для теста]
+Конфигурационные файлы для запуска тестов в RubyMine:
 
+	.idea/runConfigurations/rest_api_test_feature.xml
+	.idea/runConfigurations/web_download_test_feature.xml
+	.idea/runConfigurations/rest_api_negative_tests_feature.xml
 
-	.idea/runConfigurations/rest_api_test_feature.xml [Конфигурационный файл для запуска теста в RubyMine]
-	.idea/runConfigurations/web_download_test_feature.xml [Конфигурационный файл для запуска теста в RubyMine]
-	.idea/runConfigurations/rest_api_negative_tests_feature.xml [Конфигурационный файл для запуска теста в RubyMine]
-
-	/features/support/download_helper.rb [Методы для проверки функционала скачивания]
-	/.xlxs [Чеклист и багрепорт по REST API]
+Дополнительный помощник для проверки функционала скачивания:
+	/features/support/download_helper.rb

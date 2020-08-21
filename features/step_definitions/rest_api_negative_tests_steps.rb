@@ -23,3 +23,11 @@ When(/^изменяю параметры несуществующего поль
   }.to raise_error(RuntimeError)
   $logger.info("Изменение параметров несуществующего пользователя - ошибка")
 end
+
+When(/^получаю информацию о несуществующем пользователе по id (\d+)$/) do |id|
+  expect {
+    response = $rest_wrap.get('/users' + id.to_s)
+  }.to raise_error(RuntimeError)
+  $logger.info("Получение информации о несуществующем пользователе по id - ошибка")
+end
+
