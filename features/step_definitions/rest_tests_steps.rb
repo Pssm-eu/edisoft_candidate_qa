@@ -29,6 +29,7 @@ When(/^добавляю пользователя c логином (\w+\.\w+) и�
                              surname: surname,
                              password: password,
                              active: 1)
+  $logger.info(response.inspect)
   $logger.info("Пользователь #{login} создан.")
 end
 
