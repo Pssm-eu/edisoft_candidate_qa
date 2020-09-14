@@ -9,6 +9,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
+*.xlsx
 
 
 # Used by dotenv library to load environment variables.
