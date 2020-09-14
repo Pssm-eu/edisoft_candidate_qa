@@ -10,10 +10,7 @@
 /test/version_tmp/
 /tmp/
 *.xlsx
-makefile
-makefile~
-.makefile.swp
-.makefile.un~
+
 
 # Used by dotenv library to load environment variables.
 # .env
